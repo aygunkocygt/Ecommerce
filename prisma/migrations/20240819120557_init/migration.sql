@@ -24,11 +24,14 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Order" (
     "id" TEXT NOT NULL PRIMARY KEY,
-    "userId" TEXT NOT NULL,
+    "orderNumber" TEXT NOT NULL,
+    "userId" TEXT,
     "totalPriceInCents" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "billingInfoId" TEXT NOT NULL,
+    CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT "Order_billingInfoId_fkey" FOREIGN KEY ("billingInfoId") REFERENCES "BillingInfo" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -54,6 +57,24 @@ CREATE TABLE "Category" (
     "name" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "isActive" BOOLEAN NOT NULL DEFAULT true
+);
+
+-- CreateTable
+CREATE TABLE "BillingInfo" (
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
+    "companyName" TEXT NOT NULL,
+    "taxOrIdNumber" TEXT,
+    "billingAddress" TEXT NOT NULL,
+    "apartment" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
+    "district" TEXT NOT NULL,
+    "shippingAddress" TEXT,
+    "phone" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
 );
 
 -- CreateIndex

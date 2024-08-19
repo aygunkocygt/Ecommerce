@@ -15,7 +15,7 @@ async function getSalesData() {
   });
 
   return {
-    amount: (data._sum.totalPriceInCents || 0) / 100,
+    amount: (data._sum.totalPriceInCents || 0),
     numberOfSales: data._count,
   };
 }
@@ -32,7 +32,7 @@ async function getUserData() {
     averageValuePerUser:
       userCount === 0
         ? 0
-        : (orderData._sum.totalPriceInCents || 0) / userCount / 100,
+        : (orderData._sum.totalPriceInCents || 0) / userCount ,
   };
 }
 
@@ -77,8 +77,8 @@ export default async function AdminDashboard() {
       />
       <DashboardCard
         title="Customers"
-        subtitle={`${formatNumber(userData.averageValuePerUser)} Average Value`}
-        body={formatCurrency(userData.userCount)}
+        subtitle={`${formatCurrency(userData.averageValuePerUser)} Average Value`}
+        body={formatNumber(userData.userCount)}
       />
       <DashboardCard
         title="Active Products"

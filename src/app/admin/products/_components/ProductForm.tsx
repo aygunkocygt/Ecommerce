@@ -17,8 +17,6 @@ export function ProductForm({ product }: { product?: Product | null }) {
   const [priceInCents, setPriceInCents] = useState<number | undefined>(product?.priceInCents)
   const [categories, setCategories] = useState<{ id: string, name: string }[]>([])
 
-  console.log("categories",categories)
-
   useEffect(() => {
     async function fetchCategories() {
       try {
@@ -70,7 +68,7 @@ export function ProductForm({ product }: { product?: Product | null }) {
       </div>
       <div className='space-y-2'>
         <Label htmlFor='file'>File</Label>
-        <Input type='file' id="file" name="file" required={product == null} />
+        <Input type='file' id="file" name="file" />
         {product != null && <div className='text-muted-foreground'>{product.filePath}</div>}
         {error.file && <div className='text-destructive'>{error.file}</div>}
       </div>

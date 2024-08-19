@@ -46,7 +46,7 @@ export function Nav({ children }: { children: ReactNode }) {
     <nav className="container bg-[#FEFEFE] text-black-foreground px-2 py-2 border-b border-gray-200">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex justify-around items-center space-x-4">
-          <div className="text-lg font-bold">Kocyigit Raf</div>
+          <Image src="/logo.png" alt="Visa" width={60} height={40} priority />
           <div className="relative flex w-full max-w-md mx-4">
             <input
               type="text"
@@ -97,7 +97,9 @@ export function Nav({ children }: { children: ReactNode }) {
                       Sepete Git
                     </Button>
                     <Button variant="default" className="w-full text-xs bg-[#F27A1A] text-white" size="xs">
+                      <Link href={"/purchase"} >
                       Siparişi Tamamla
+                      </Link>
                     </Button>
                   </div>
                 </div>

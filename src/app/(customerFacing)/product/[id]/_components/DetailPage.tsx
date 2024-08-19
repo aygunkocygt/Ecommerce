@@ -21,7 +21,7 @@ type CheckoutFormProps = {
 export default function DetailPage({ product }: CheckoutFormProps) {
   const images = [
     { imagePath: product.imagePath.startsWith('/') ? product.imagePath : `/${product.imagePath}` },
-    { imagePath: product.filePath.startsWith('/') ? product.filePath : `/${product.filePath}` }
+    ...(product.filePath ? [{ imagePath: product.filePath.startsWith('/') ? product.filePath : `/${product.filePath}` }] : [])
   ];
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
