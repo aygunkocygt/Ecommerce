@@ -12,10 +12,14 @@ import { formatCurrency, formatText } from "@/lib/formatters";
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 
-export function Nav({ children }: { children: ReactNode }) {
+
+export function Nav({ session, children }: { children: ReactNode, session:any }) {
   const { basket } = useBasket();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const { user } = session
+
+  console.log("user:",user)
 
   const handleMouseEnter = () => setIsDropdownOpen(true);
   const handleMouseLeave = () => {
@@ -56,9 +60,9 @@ export function Nav({ children }: { children: ReactNode }) {
             <Search className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#F27A1A] w-4 h-4" />
           </div>
           <div className="flex space-x-2">
-            <MenuLink href="/giris-yap">
+            <MenuLink href={user?.email ? "/account" : "/login"}>
               <User className="w-4 h-4" />
-              <span>Giriş Yap</span>
+              <span>{user?.email ? "Hesabım" : "Giriş Yap"}</span>
             </MenuLink>
             <div
               className="relative"
