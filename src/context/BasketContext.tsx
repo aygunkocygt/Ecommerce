@@ -1,16 +1,10 @@
 "use client";
 
 import React, { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
+import { BasketItem} from '@/lib/types'
 
 // Sepet durumu tipi
-type BasketItem = {
-  id: string;
-  name: string;
-  priceInCents: number;
-  description: string;
-  imagePath: string;
-  count: number; // Add count field
-};
+
 
 type BasketState = BasketItem[];
 

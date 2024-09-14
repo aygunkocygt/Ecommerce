@@ -17,7 +17,7 @@ export function Nav({ session, children }: { children: ReactNode, session:any })
   const { basket } = useBasket();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const { user } = session
+  const  user  = session?.user;
 
   console.log("user:",user)
 

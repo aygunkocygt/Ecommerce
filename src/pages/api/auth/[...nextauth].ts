@@ -43,8 +43,10 @@ export default NextAuth({
     signIn: '/login',  // Giriş sayfasını özelleştirin
   },
   callbacks: {
-    async session(session, user) {
-      session.user.id = user.id;
+    async session({ session, token }) {
+      if (token && session?.user) {
+        session.user.id = token.sub ?? null;  // Set to null if no user ID
+      }
       return session;
     }
   }

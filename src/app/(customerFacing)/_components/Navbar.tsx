@@ -5,7 +5,7 @@ import { useBasket } from '@/context/BasketContext';
 import { Category } from '@prisma/client';
 import db from '@/db/db';
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import authOptions  from "@/pages/api/auth/[...nextauth]";
 
 export default async function Navbar(){
 

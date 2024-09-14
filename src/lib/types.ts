@@ -24,4 +24,13 @@ export interface ExtendedOrder extends PrismaOrder {
   };
 }
 
+export interface BasketItem {
+  id: string;
+  name: string;
+  priceInCents: number;
+  description: string;
+  imagePath: string;
+  count: number; // Add count field
+}
+
 // Now you can use `ExtendedOrder` for your type checks
