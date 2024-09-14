@@ -1,0 +1,49 @@
+# Define the version of Docker Compose.
+version: "3.7"
+
+# Define the services to be run by Docker Compose.
+services:
+  # Define the dev service.
+  # This service will be used to run the application in the development environment.
+  dev:
+    # Define the build context as the current directory and the Dockerfile to be used as Dockerfile.dev.
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    # Define the container name.
+    container_name: demo-docker-nextjs-dev
+    # Define the environment variable WATCHPACK_POLLING as true. This is necessary for hot reload to work correctly.
+    environment:
+      - WATCHPACK_POLLING=true
+    # Define the volumes to be mounted in the container.
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    # Maps the ports to be exposed on the host.
+    ports:
+      - "3000:3000"
+    # Define the environment file to be used.
+    env_file:
+      - .env
+  
+  # Define the prod service.
+  # This service will be used to run the application in the production environment.
+  prod:
+    # Define the build context as the current directory and the Dockerfile to be used as Dockerfile.prod.
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    # Define the container name.
+    container_name: demo-docker-nextjs
+    # Maps the ports to be exposed on the host.
+    ports:
+      - "3000:3000"
+    # Define the environment file to be used.
+    env_file:
+      - .env
+
+# Define the volumes to be used.
+# The node_modules volume is used to persist project dependencies between containers.
+volumes:
+  node_modules:
